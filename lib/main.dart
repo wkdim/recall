@@ -7,12 +7,11 @@ import 'database/database.dart';
 import 'screens/deck_list_screen.dart';
 import 'theme/app_theme.dart';
 
-/// Empty until a real Sentry DSN is added — the SDK quietly no-ops with an
-/// empty DSN rather than failing, so this is safe to ship as-is. Get one
-/// free at https://sentry.io → Settings → Projects → (your project) →
-/// Client Keys (DSN). A DSN is safe to embed in client code (unlike an API
-/// key) — it only lets the SDK *send* events, not read anything back.
-const _kSentryDsn = '';
+/// Sentry project: recall-av / flutter. A DSN is safe to embed in client
+/// code (unlike an API key) — it only lets the SDK *send* events, not read
+/// anything back.
+const _kSentryDsn =
+    'https://ffddba6e7a39412f7a54c3fc3bc4e8a7@o4511823707963392.ingest.de.sentry.io/4511823712682064';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
