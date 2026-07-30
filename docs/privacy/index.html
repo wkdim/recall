@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Recall</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1b1f;
+    --muted: #5f6368;
+    --accent: #6750a4;
+    --rule: #e6e1e9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141218;
+      --fg: #e6e1e5;
+      --muted: #b0a9b8;
+      --accent: #d0bcfe;
+      --rule: #3a3640;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 4px;
+  }
+  .updated {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin-top: 40px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy Policy for Recall</h1>
+  <p class="updated">Last updated: 2026-07-30</p>
+
+  <p>Recall is an offline-first flashcard app. This policy explains what
+  information the app handles and, just as importantly, what it doesn't.</p>
+
+  <h2>No account required</h2>
+  <p>Recall doesn't require you to sign up, log in, or provide any personal
+  information to use it.</p>
+
+  <h2>Your flashcards stay on your device</h2>
+  <p>All decks, cards, review history, streaks, and settings are stored
+  locally on your device, in a local database. None of it is uploaded
+  anywhere, because there is no server for it to go to — Recall has no
+  backend.</p>
+
+  <h2>On-device AI features</h2>
+  <p>The "Generate from text" and "Improve with AI" features run a small
+  open-source language model entirely on your device. The first time you
+  use either feature, the app downloads that model file from Hugging Face
+  (huggingface.co) — a one-time download, after which the feature works
+  fully offline. That download request, like any file download, is visible
+  to the hosting provider in the ordinary way any request is (e.g. your IP
+  address). No flashcard content, no text you type, and no results from
+  these features are ever sent off your device — all of the actual AI
+  processing happens locally.</p>
+
+  <h2>Crash reporting</h2>
+  <p>Recall uses <a href="https://sentry.io" target="_blank" rel="noopener">Sentry</a>
+  to report crashes and errors, so problems can be found and fixed. If the
+  app crashes or hits an unexpected error, Sentry receives a crash report
+  containing: the error/stack trace, device model and OS version, and the
+  app's version number. It does <strong>not</strong> receive your flashcard
+  content, anything you've typed, or any other data from within the app —
+  crash reports are limited to the technical details needed to diagnose the
+  crash itself.</p>
+
+  <h2>No ads, no tracking, no data sale</h2>
+  <p>Recall has no advertising, no third-party analytics or tracking SDKs,
+  and does not sell or share data with anyone — because it doesn't collect
+  data to begin with.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes — for example, if a new feature changes what
+  data is handled — this page will be updated and the "Last updated" date
+  above will reflect it.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy can be sent to:
+  <a href="mailto:REPLACE_WITH_CONTACT_EMAIL">REPLACE_WITH_CONTACT_EMAIL</a>.</p>
+</main>
+</body>
+</html>

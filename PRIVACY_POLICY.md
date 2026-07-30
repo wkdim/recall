@@ -1,6 +1,6 @@
 # Privacy Policy for Recall
 
-_Last updated: 2026-07-28_
+_Last updated: 2026-07-30_
 
 Recall is an offline-first flashcard app. This policy explains what
 information the app handles and, just as importantly, what it doesn't.
