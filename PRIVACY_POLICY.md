@@ -52,5 +52,4 @@ will reflect it.
 
 ## Contact
 
-Questions about this policy can be sent to: _[add a contact email before
-publishing this to an app store listing]_.
+Questions about this policy can be sent to: [williamdim8@gmail.com](mailto:williamdim8@gmail.com).
