@@ -2,7 +2,7 @@
     <!-- Required on Android 13+ for the daily study reminder to be allowed
          to post a notification at all. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <!-- Needed for the one-time on-device AI model download (flutter_gemma) —
+    <!-- Needed for the one-time on-device AI model download (flutter_gemma) -
          everything after that download runs fully offline. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application

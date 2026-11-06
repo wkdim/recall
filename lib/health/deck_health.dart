@@ -19,15 +19,15 @@ class DeckHealthReport {
       duplicateCount > 0 || tooLongCount > 0 || neverReviewedCount > 0 || overdueCount > 0;
 }
 
-/// Rule-based deck quality check — no AI needed. Every check works off
+/// Rule-based deck quality check - no AI needed. Every check works off
 /// fields already on [Card].
 ///
 /// - Duplicates: cards sharing the same front text (case/whitespace
-///   insensitive) — every copy beyond the first counts as one duplicate.
+///   insensitive) - every copy beyond the first counts as one duplicate.
 /// - Too long: front or back text past [maxLength], which tends to test
 ///   recall of a paragraph instead of one fact.
 /// - Never reviewed: still at the pristine ease/repetition defaults.
-/// - Overdue: due more than [overdueDays] days ago — not just due today,
+/// - Overdue: due more than [overdueDays] days ago - not just due today,
 ///   genuinely neglected.
 DeckHealthReport computeDeckHealth(
   List<Card> cards, {

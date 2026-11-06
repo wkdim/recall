@@ -1,6 +1,6 @@
 final _clozePattern = RegExp(r'\{\{c::(.*?)\}\}');
 
-/// Whether a template contains at least one cloze marker — used to warn a
+/// Whether a template contains at least one cloze marker - used to warn a
 /// user who ticks "cloze" but forgets the `{{c::...}}` syntax.
 bool hasClozeMarker(String template) => _clozePattern.hasMatch(template);
 

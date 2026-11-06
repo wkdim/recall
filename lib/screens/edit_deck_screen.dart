@@ -25,13 +25,13 @@ class EditDeckScreen extends StatefulWidget {
   final MediaPicker? mediaPicker;
 
   /// Overrides where picked media gets copied to. Tests must pass a temp
-  /// directory here — leaving this null makes [MediaStorage] call the real
+  /// directory here - leaving this null makes [MediaStorage] call the real
   /// `path_provider` plugin, which hangs indefinitely in a plain
   /// `flutter_test` host (no engine, same class of issue as `AppDatabase()`).
   final Directory? mediaStorageDir;
 
   /// Injectable so tests can exercise "Improve with AI" without a real
-  /// on-device model — flutter_test has no platform channel for it, same
+  /// on-device model - flutter_test has no platform channel for it, same
   /// reason as [mediaPicker] above.
   final FlashcardGenerator? flashcardGenerator;
 
@@ -772,7 +772,7 @@ class _EditCardDialogState extends State<_EditCardDialog> {
       setState(() {
         _improveError = e is FlashcardGenerationException
             ? e.message
-            : "Couldn't get a suggestion — check your connection and try again.";
+            : "Couldn't get a suggestion. Check your connection and try again.";
       });
     } finally {
       if (mounted) setState(() => _improving = false);

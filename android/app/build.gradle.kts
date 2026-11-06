@@ -7,7 +7,7 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Release signing lives in key.properties (gitignored — never commit the
+// Release signing lives in key.properties (gitignored - never commit the
 // keystore or its passwords). A checkout missing that file falls back to
 // debug-signed release builds for local development, rather than failing
 // the Gradle configuration phase outright.
@@ -37,7 +37,7 @@ android {
         applicationId = "com.wkdim.recall"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        // flutter_gemma (on-device AI) requires minSdkVersion 24 — higher
+        // flutter_gemma (on-device AI) requires minSdkVersion 24 - higher
         // than Flutter's own default, so it's pinned explicitly here.
         minSdk = maxOf(flutter.minSdkVersion, 24)
         targetSdk = flutter.targetSdkVersion

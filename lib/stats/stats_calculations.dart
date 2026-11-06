@@ -13,13 +13,13 @@ Map<DateTime, int> bucketReviewsByDay(List<DateTime> reviewedAt) {
 }
 
 /// The last [count] calendar days ending on (and including) [today], oldest
-/// first — the x-axis of the study-calendar heatmap.
+/// first - the x-axis of the study-calendar heatmap.
 List<DateTime> lastNDays(int count, DateTime today) {
   final end = dateOnly(today);
   return List.generate(count, (i) => end.subtract(Duration(days: count - 1 - i)));
 }
 
-/// Fraction (0.0–1.0) of reviews rated Good or Easy (quality >= 3) — the
+/// Fraction (0.0-1.0) of reviews rated Good or Easy (quality >= 3) - the
 /// simplest honest measure of "how much of what I studied did I actually
 /// remember," used for the Stats screen's retention figure.
 double retentionRate(List<int> qualities) {

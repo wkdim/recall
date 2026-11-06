@@ -110,7 +110,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               value: _reminder!.enabled,
               onChanged: _toggleReminder,
               title: const Text('Remind me to study'),
-              subtitle: const Text('A single daily notification — nothing fancier, no due-count details.'),
+              subtitle: const Text('One notification a day, with no due-count details.'),
             ),
             if (_reminder!.enabled)
               ListTile(

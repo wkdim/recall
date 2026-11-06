@@ -21,17 +21,17 @@ class Cards extends Table {
   IntColumn get interval => integer().withDefault(const Constant(1))();
   IntColumn get repetitions => integer().withDefault(const Constant(0))();
   DateTimeColumn get nextReview => dateTime().withDefault(currentDate)();
-  /// Comma-separated tags (e.g. "verbs,irregular") — simple by design;
+  /// Comma-separated tags (e.g. "verbs,irregular") - simple by design;
   /// a join table would be overkill until decks routinely need >100 tags.
   TextColumn get tags => text().nullable()();
   /// When true, `front` holds a cloze template (e.g. "Paris is the
   /// {{c::capital}} of France") instead of a plain question.
   BoolColumn get isCloze => boolean().withDefault(const Constant(false))();
-  /// FSRS-specific memory state — null until a card has been reviewed at
+  /// FSRS-specific memory state - null until a card has been reviewed at
   /// least once under the FSRS scheduler; SM-2 fields above are untouched.
   RealColumn get stability => real().nullable()();
   RealColumn get difficulty => real().nullable()();
-  /// Absolute paths into this app's own documents directory — never the
+  /// Absolute paths into this app's own documents directory - never the
   /// picker's original (often cache/temp) path, which the OS can reclaim.
   /// Not included in CSV/JSON export: a local file path is meaningless on
   /// another device, and bundling the actual bytes is a separate feature.

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_gemma/flutter_gemma.dart';
 
-/// One AI-suggested card, not yet written to the database — the caller
+/// One AI-suggested card, not yet written to the database - the caller
 /// decides which ones to keep.
 class GeneratedCard {
   final String front;
@@ -11,7 +11,7 @@ class GeneratedCard {
   const GeneratedCard({required this.front, required this.back});
 }
 
-/// Thrown when the model's response couldn't be turned into cards — a bad
+/// Thrown when the model's response couldn't be turned into cards - a bad
 /// generation, not a plumbing failure, so callers should offer "try again"
 /// rather than treating it like a network/model-load error.
 class FlashcardGenerationException implements Exception {
@@ -23,11 +23,11 @@ class FlashcardGenerationException implements Exception {
 }
 
 /// Generates flashcards from pasted study text. Abstracted so screens stay
-/// testable with a fake — [OnDeviceFlashcardGenerator] drives a real on-device
+/// testable with a fake - [OnDeviceFlashcardGenerator] drives a real on-device
 /// model via platform channels flutter_test can't exercise (same reason
 /// `MediaPicker`/`ReminderScheduler` are abstracted elsewhere in this app).
 abstract class FlashcardGenerator {
-  /// [onDownloadProgress] (0-100) fires only the first time — later calls
+  /// [onDownloadProgress] (0-100) fires only the first time - later calls
   /// find the model already installed and skip straight to generation.
   Future<List<GeneratedCard>> generateFromText(
     String sourceText, {
@@ -36,7 +36,7 @@ abstract class FlashcardGenerator {
 
   /// Suggests a clearer/tighter phrasing for a single existing card. Returns
   /// the *same* front/back back unchanged when the model judges the card
-  /// already fine — callers should still let the user compare before
+  /// already fine - callers should still let the user compare before
   /// applying it, rather than treating "unchanged" as a signal to skip the
   /// review step.
   Future<GeneratedCard> improveCard(
@@ -47,7 +47,7 @@ abstract class FlashcardGenerator {
 }
 
 /// Model file is ungated on HuggingFace (Apache 2.0, no login/token
-/// required) — deliberately chosen over Gemma to avoid asking every end
+/// required) - deliberately chosen over Gemma to avoid asking every end
 /// user to create a HuggingFace account just to use this feature. ~475MB,
 /// downloaded once and cached; every later call is fully offline.
 const kOnDeviceModelUrl =
@@ -81,7 +81,7 @@ class OnDeviceFlashcardGenerator implements FlashcardGenerator {
     return parseImprovedCard(response);
   }
 
-  /// Installs (idempotent — no-op after the first call) and drives a single
+  /// Installs (idempotent - no-op after the first call) and drives a single
   /// prompt/response turn on the on-device model. Shared by both prompts so
   /// the install/session/close lifecycle only lives in one place.
   Future<String> _runSingleTurn(
@@ -117,15 +117,15 @@ class OnDeviceFlashcardGenerator implements FlashcardGenerator {
   String _buildGeneratePrompt(String sourceText) => '''
 You are a flashcard generator. Read the study material below and write concise question/answer flashcards covering its key facts. Generate at most $_maxCards cards.
 
-Respond with ONLY a JSON array — no markdown code fences, no explanation before or after. Each element must be an object with exactly two string fields: "front" (the question) and "back" (the answer).
+Respond with ONLY a JSON array - no markdown code fences, no explanation before or after. Each element must be an object with exactly two string fields: "front" (the question) and "back" (the answer).
 
 Study material:
 $sourceText''';
 
   String _buildImprovePrompt(String front, String back) => '''
-You are a flashcard quality reviewer. Given the flashcard below, suggest a clearer, tighter version — fix ambiguity, split up compound questions, tighten wording. If it's already good, return it unchanged.
+You are a flashcard quality reviewer. Given the flashcard below, suggest a clearer, tighter version - fix ambiguity, split up compound questions, tighten wording. If it's already good, return it unchanged.
 
-Respond with ONLY a JSON object — no markdown code fences, no explanation before or after — with exactly two string fields: "front" and "back".
+Respond with ONLY a JSON object - no markdown code fences, no explanation before or after - with exactly two string fields: "front" and "back".
 
 Current card:
 front: $front
@@ -134,7 +134,7 @@ back: $back''';
 
 /// Extracts flashcards from a model's raw text response. Models routinely
 /// ignore "no markdown fences" instructions and/or add a sentence of preamble
-/// — this tolerates both by locating the outermost `[...]` span rather than
+/// - this tolerates both by locating the outermost `[...]` span rather than
 /// requiring the whole response to be valid JSON on its own.
 List<GeneratedCard> parseGeneratedCards(String rawResponse) {
   final start = rawResponse.indexOf('[');
@@ -151,13 +151,13 @@ List<GeneratedCard> parseGeneratedCards(String rawResponse) {
     decoded = jsonDecode(jsonSlice);
   } on FormatException {
     throw const FlashcardGenerationException(
-      "The model's response wasn't valid — try again.",
+      "The model's response wasn't valid. Please try again.",
     );
   }
 
   if (decoded is! List) {
     throw const FlashcardGenerationException(
-      "The model's response wasn't a list of cards — try again.",
+      "The model's response wasn't a list of cards. Please try again.",
     );
   }
 
@@ -173,7 +173,7 @@ List<GeneratedCard> parseGeneratedCards(String rawResponse) {
 
   if (cards.isEmpty) {
     throw const FlashcardGenerationException(
-      'No usable cards came back from that text — try again with more content.',
+      'No usable cards came back from that text. Try again with more content.',
     );
   }
   return cards;
@@ -197,13 +197,13 @@ GeneratedCard parseImprovedCard(String rawResponse) {
     decoded = jsonDecode(jsonSlice);
   } on FormatException {
     throw const FlashcardGenerationException(
-      "The model's response wasn't valid — try again.",
+      "The model's response wasn't valid. Please try again.",
     );
   }
 
   if (decoded is! Map) {
     throw const FlashcardGenerationException(
-      "The model's response wasn't a single card — try again.",
+      "The model's response wasn't a single card. Please try again.",
     );
   }
 
@@ -211,7 +211,7 @@ GeneratedCard parseImprovedCard(String rawResponse) {
   final back = decoded['back'];
   if (front is! String || back is! String || front.trim().isEmpty || back.trim().isEmpty) {
     throw const FlashcardGenerationException(
-      "The model's suggestion was missing a front or back — try again.",
+      "The model's suggestion was missing a front or back. Please try again.",
     );
   }
   return GeneratedCard(front: front.trim(), back: back.trim());

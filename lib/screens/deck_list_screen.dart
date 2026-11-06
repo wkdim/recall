@@ -13,7 +13,7 @@ import 'settings_screen.dart';
 import 'stats_screen.dart';
 import 'study_screen.dart';
 
-/// "Due Today" is deliberately left out here — the Focus Mode card above
+/// "Due Today" is deliberately left out here - the Focus Mode card above
 /// already covers it, and repeating it as a collection chip would be
 /// redundant rather than useful.
 const _kCollectionTypes = [
@@ -446,7 +446,7 @@ class _DeckListScreenState extends State<DeckListScreen> {
                                           ),
                                           if (health.score < 70)
                                             Tooltip(
-                                              message: 'Deck health: ${health.score}/100 — open the deck to see why',
+                                              message: 'Deck health: ${health.score}/100. Open the deck to see why.',
                                               child: Icon(
                                                 Icons.health_and_safety_outlined,
                                                 size: 16,

@@ -54,7 +54,7 @@ void main() {
     });
   });
 
-  group('lapses vs. passes — the key difference from this app\'s SM-2 path', () {
+  group('lapses vs. passes - the key difference from this app\'s SM-2 path', () {
     test('Again (quality 0) is a lapse: stability drops', () {
       final r = fsrsSchedule(stability: 10, difficulty: 5, quality: 0);
       expect(r.stability, lessThan(10));

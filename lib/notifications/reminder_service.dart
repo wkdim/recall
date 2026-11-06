@@ -6,7 +6,7 @@ import 'package:timezone/timezone.dart' as tz;
 const _kNotificationId = 1;
 
 /// Abstraction over the real plugin calls so [SettingsScreen] can be tested
-/// with a fake — actual notification delivery can't be verified by an
+/// with a fake - actual notification delivery can't be verified by an
 /// automated test regardless, only by checking a real device.
 abstract class ReminderScheduler {
   Future<bool> requestPermission();
@@ -25,7 +25,7 @@ class ReminderService implements ReminderScheduler {
       final name = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(name));
     } catch (_) {
-      // Falls back to whatever `timezone` defaults to (UTC) — a reminder
+      // Falls back to whatever `timezone` defaults to (UTC) - a reminder
       // that fires at the wrong local hour is still better than one that
       // silently never gets scheduled at all.
     }

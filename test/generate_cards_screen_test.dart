@@ -13,7 +13,7 @@ class _FakeGenerator implements FlashcardGenerator {
   final Object? error;
   final int? progressToReport;
 
-  /// When set, [generateFromText] suspends here after reporting progress —
+  /// When set, [generateFromText] suspends here after reporting progress -
   /// lets a test pump exactly once and observe the in-flight download-progress
   /// frame before letting generation "complete".
   final Completer<void>? gate;
@@ -140,11 +140,11 @@ void main() {
     await tester.enterText(find.byType(TextField), 'Text.');
     await tester.tap(find.text('Generate Cards'));
     // One pump (not settle) to observe the in-flight download-progress frame
-    // — generateFromText is suspended on the gate, so this is stable rather
+    // - generateFromText is suspended on the gate, so this is stable rather
     // than racing whatever's left of a real async chain.
     await tester.pump();
 
-    expect(find.textContaining('Downloading on-device model — 42%'), findsOneWidget);
+    expect(find.textContaining('Downloading on-device model: 42%'), findsOneWidget);
 
     gate.complete();
     await tester.pumpAndSettle();

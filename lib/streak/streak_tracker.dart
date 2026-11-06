@@ -33,7 +33,7 @@ int computeNewStreak({
 /// Persists the daily study streak locally via [SharedPreferences].
 class StreakTracker {
   /// Records that a study session happened today, updating and persisting
-  /// the streak. Safe to call more than once in the same day — the streak
+  /// the streak. Safe to call more than once in the same day - the streak
   /// only advances on the first call of a new calendar day.
   Future<int> recordStudySession({DateTime? now}) async {
     final prefs = await SharedPreferences.getInstance();
@@ -55,7 +55,7 @@ class StreakTracker {
     return newStreak;
   }
 
-  /// The current streak without recording a new session — for display only.
+  /// The current streak without recording a new session - for display only.
   Future<int> currentStreak({DateTime? now}) async {
     final prefs = await SharedPreferences.getInstance();
     final streak = prefs.getInt(_kStreakKey) ?? 0;

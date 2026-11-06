@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-/// A simplified FSRS-style scheduler — an alternative to [sm2Schedule] that
+/// A simplified FSRS-style scheduler - an alternative to [sm2Schedule] that
 /// tracks memory **stability** and **difficulty** separately instead of a
 /// single ease factor, which is the core idea FSRS improves on SM-2 with.
 ///
@@ -8,11 +8,11 @@ import 'dart:math' as math;
 /// FSRS v4 forgetting-curve formula (fixed DECAY/FACTOR constants published
 /// by the fsrs4anki project). The stability/difficulty *update* rules after
 /// each rating are a deliberately simplified approximation, not a byte-exact
-/// port of FSRS-4.5's 17 trained weights — those are calibrated against a
+/// port of FSRS-4.5's 17 trained weights - those are calibrated against a
 /// huge review dataset this app has no way to reproduce or verify against.
 /// What's preserved is the actual mechanic that matters: difficulty and
 /// stability evolve as two independent numbers, and only a true failure
-/// (quality 0, "Again") counts as a lapse — unlike this app's SM-2 path,
+/// (quality 0, "Again") counts as a lapse - unlike this app's SM-2 path,
 /// where quality 2 ("Hard") also resets progress. That difference is real
 /// and intentional, not a simplification.
 class FsrsResult {
@@ -42,7 +42,7 @@ int _ratingFromQuality(int quality) {
 }
 
 /// Days until retrievability decays to [requestRetention], given current
-/// stability — the real FSRS v4 forgetting-curve formula.
+/// stability - the real FSRS v4 forgetting-curve formula.
 int _intervalFromStability(double stability, double requestRetention) {
   final days = stability * (1 / _kFactor) * (math.pow(requestRetention, 1 / _kDecay) - 1);
   return days.round().clamp(1, 36500);
@@ -68,7 +68,7 @@ FsrsResult fsrsSchedule({
     newStability = math.max(0.1, stability * 0.5);
     newDifficulty = (difficulty + 2).clamp(1.0, 10.0);
   } else {
-    // A pass (Hard/Good/Easy) — harder ratings grow stability less, and
+    // A pass (Hard/Good/Easy) - harder ratings grow stability less, and
     // lower difficulty compounds future growth, mirroring FSRS's intent
     // without its exact weights.
     const growthByRating = {2: 1.0, 3: 1.3, 4: 1.8};

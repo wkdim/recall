@@ -10,7 +10,7 @@ import 'package:flashcard_app/screens/study_screen.dart';
 import 'package:flashcard_app/theme/app_theme.dart';
 
 void main() {
-  // Onboarding marked seen so its first-launch sheet doesn't interfere —
+  // Onboarding marked seen so its first-launch sheet doesn't interfere -
   // these tests aren't testing onboarding.
   setUp(() => SharedPreferences.setMockInitialValues({'has_seen_onboarding': true}));
 

@@ -20,7 +20,7 @@ import 'edit_deck_screen.dart';
 const _kSwipeVelocityThreshold = 250.0;
 
 /// Everything needed to put a card back exactly how it was before its most
-/// recent rating — a single-level undo, not a full history stack.
+/// recent rating - a single-level undo, not a full history stack.
 class _LastRating {
   final int cardId;
   final double easeFactor;
@@ -47,19 +47,19 @@ class _LastRating {
 
 class StudyScreen extends StatefulWidget {
   /// The deck to study. Null means "study every due card across every
-  /// deck" — the cross-deck Focus Mode queue from the deck list's home screen.
+  /// deck" - the cross-deck Focus Mode queue from the deck list's home screen.
   final Deck? deck;
 
   /// Studying a specific set of cards (a Smart Collection) instead of a
   /// deck. Takes priority over [deck] when both are somehow set.
   final List<int>? cardIds;
 
-  /// Overrides the AppBar title — used by Smart Collections, since there's
+  /// Overrides the AppBar title - used by Smart Collections, since there's
   /// no deck name to fall back on.
   final String? title;
 
   /// Smart Collections other than "Due Today" deliberately study cards
-  /// regardless of whether they're due yet — that's the point of e.g.
+  /// regardless of whether they're due yet - that's the point of e.g.
   /// practicing "Difficult Cards" ahead of schedule.
   final bool ignoreDueDate;
 
@@ -154,11 +154,12 @@ class _StudyScreenState extends State<StudyScreen>
     // transition back to a caller that immediately reads the streak.
     if (_studiedCount == 0) {
       await _streakTracker.recordStudySession();
+      if (!mounted) return;
     }
 
     final db = Provider.of<AppDatabase>(context, listen: false);
 
-    // SM-2 bookkeeping (easeFactor/repetitions) always runs alongside FSRS —
+    // SM-2 bookkeeping (easeFactor/repetitions) always runs alongside FSRS -
     // Smart Collections and Deck Health key off those fields, not off the
     // scheduling interval, so they need it regardless of which algorithm
     // is authoritative for the actual next-review date.
@@ -187,7 +188,7 @@ class _StudyScreenState extends State<StudyScreen>
     );
     final reviewLogId = await db.logReview(card.id, quality, DateTime.now());
 
-    // XP/daily-goal deliberately aren't reverted by undo (below) — undo
+    // XP/daily-goal deliberately aren't reverted by undo (below) - undo
     // exists to fix a scheduling mistake, not to erase that the user engaged
     // with the card, and there's no competitive stakes here that would make
     // "gaming" a rate-then-undo loop worth guarding against.
@@ -220,7 +221,7 @@ class _StudyScreenState extends State<StudyScreen>
     });
   }
 
-  /// Puts the most recently rated card back exactly how it was — a single
+  /// Puts the most recently rated card back exactly how it was - a single
   /// step, not a full undo history. Rating another card replaces this.
   Future<void> _undoLastRating() async {
     final last = _lastRating;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const _seedColor = Color(0xFF6750A4);
 
-/// Semantic colors this app needs beyond what [ColorScheme] provides —
+/// Semantic colors this app needs beyond what [ColorScheme] provides -
 /// deck tile gradients/accents, the four SM-2 rating colors, the streak
 /// flame, and the "all caught up" success state. Centralizing these here
 /// (instead of hardcoding hex values per-screen) is what makes dark mode
@@ -18,7 +18,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color successBackground;
   final Color successForeground;
 
-  /// Text drawn directly on a deck tile's gradient background — that
+  /// Text drawn directly on a deck tile's gradient background - that
   /// background isn't tied to [ColorScheme], so its foreground can't be
   /// derived from onSurface/onSurfaceVariant the way normal content can.
   final Color tileForeground;
@@ -132,7 +132,7 @@ class AppColors extends ThemeExtension<AppColors> {
   @override
   AppColors lerp(ThemeExtension<AppColors>? other, double t) {
     if (other is! AppColors) return this;
-    return this; // Discrete palettes — no need to interpolate between them.
+    return this; // Discrete palettes - no need to interpolate between them.
   }
 }
 

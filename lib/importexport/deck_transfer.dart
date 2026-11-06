@@ -114,7 +114,7 @@ DeckExport decodeDeckFromJson(String jsonStr) {
   );
 }
 
-/// Simple front/back CSV — the common interchange format other flashcard
+/// Simple front/back CSV - the common interchange format other flashcard
 /// apps export/import, so a switcher doesn't have to retype their deck.
 String encodeCardsToCsv(List<CardRecord> cards) {
   final rows = [

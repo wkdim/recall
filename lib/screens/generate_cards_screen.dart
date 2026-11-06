@@ -7,7 +7,7 @@ class GenerateCardsScreen extends StatefulWidget {
   final int deckId;
 
   /// Injectable so tests can exercise this screen without a real on-device
-  /// model — flutter_test has no platform channel for it, same reason
+  /// model - flutter_test has no platform channel for it, same reason
   /// `MediaPicker`/`ReminderScheduler` are abstracted elsewhere in this app.
   final FlashcardGenerator? generator;
 
@@ -64,7 +64,7 @@ class _GenerateCardsScreenState extends State<GenerateCardsScreen> {
       setState(() {
         _errorMessage = e is FlashcardGenerationException
             ? e.message
-            : "Couldn't generate cards — check your connection (needed once, to download the on-device model) and try again.";
+            : "Couldn't generate cards. Check your connection (needed once, to download the on-device model) and try again.";
         _status = _Status.error;
       });
     }
@@ -107,7 +107,7 @@ class _GenerateCardsScreenState extends State<GenerateCardsScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text(
-            'Paste notes, an article, or any study text below. Cards are generated on-device — nothing leaves your phone.',
+            'Paste notes, an article, or any study text below. Cards are generated on your device, and nothing leaves your phone.',
           ),
           const SizedBox(height: 12),
           Expanded(
@@ -145,7 +145,7 @@ class _GenerateCardsScreenState extends State<GenerateCardsScreen> {
                 children: [
                   LinearProgressIndicator(value: _downloadPercent / 100),
                   const SizedBox(height: 12),
-                  Text('Downloading on-device model — $_downloadPercent%\n(one-time, ~475MB, then fully offline)',
+                  Text('Downloading on-device model: $_downloadPercent%\n(one-time, ~475MB, then fully offline)',
                       textAlign: TextAlign.center),
                 ],
               )

@@ -113,7 +113,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // Swiping before flipping should do nothing — still on the question side.
+    // Swiping before flipping should do nothing - still on the question side.
     await tester.fling(find.byKey(const ValueKey('flip-card')), const Offset(300, 0), 1000);
     await tester.pumpAndSettle();
     expect(find.text('Front'), findsOneWidget);

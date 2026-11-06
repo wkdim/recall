@@ -20,7 +20,7 @@ subprojects {
 }
 
 // Several plugins (e.g. sentry_flutter) still pin Kotlin languageVersion
-// "1.6" in their own android/build.gradle — a value the Kotlin 2.2.20
+// "1.6" in their own android/build.gradle - a value the Kotlin 2.2.20
 // compiler (bumped project-wide to clear a Flutter deprecation warning) no
 // longer accepts at all, failing every such plugin's compile task with
 // "Language version 1.6 is no longer supported." Forcing a modern language

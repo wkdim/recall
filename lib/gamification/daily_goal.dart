@@ -27,7 +27,7 @@ int computeDailyCount({
 }
 
 /// Persists the user's daily card-review goal and today's progress toward it
-/// locally via [SharedPreferences] — same thin-wrapper-over-a-pure-function
+/// locally via [SharedPreferences] - same thin-wrapper-over-a-pure-function
 /// pattern as [StreakTracker].
 class DailyGoalTracker {
   Future<int> getGoal() async {
@@ -41,7 +41,7 @@ class DailyGoalTracker {
   }
 
   /// Records that one card was reviewed just now, updating and persisting
-  /// today's progress. Safe to call for every card in a session — unlike the
+  /// today's progress. Safe to call for every card in a session - unlike the
   /// streak (once per day), the daily goal count increments every time.
   Future<int> recordReview({DateTime? now}) async {
     final prefs = await SharedPreferences.getInstance();
@@ -63,7 +63,7 @@ class DailyGoalTracker {
     return newCount;
   }
 
-  /// Today's progress without recording a review — for display only. Reads
+  /// Today's progress without recording a review - for display only. Reads
   /// as 0 once the stored count is from a prior day, rather than showing a
   /// stale number.
   Future<int> todayCount({DateTime? now}) async {

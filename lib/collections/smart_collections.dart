@@ -18,17 +18,17 @@ String collectionLabel(SmartCollectionType type) {
 }
 
 /// Filters a full card list down to one Smart Collection. All heuristics
-/// work only from fields already on [Card] — no extra schema needed.
+/// work only from fields already on [Card] - no extra schema needed.
 ///
 /// - Due Today: due for review right now, same rule the study screen uses.
 /// - Forgotten: has lapsed at least once (ease pulled below the pristine
-///   2.5 default) and reset to zero repetitions — distinct from a card
+///   2.5 default) and reset to zero repetitions - distinct from a card
 ///   that's simply never been studied, which stays at the 2.5 default.
 /// - Difficult: has been reviewed and its ease factor is well below
 ///   default, meaning it keeps getting rated Again/Hard.
 /// - Recently Added: newest by insertion order (autoincrement id), not by
-///   review state — there's no separate "created at" timestamp.
-/// - Mature: interval of 21+ days with at least 2 successful reviews —
+///   review state - there's no separate "created at" timestamp.
+/// - Mature: interval of 21+ days with at least 2 successful reviews -
 ///   the same "mature" threshold Anki uses.
 List<Card> filterCollection(
   SmartCollectionType type,

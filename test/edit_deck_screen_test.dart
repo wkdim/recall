@@ -9,11 +9,11 @@ import 'package:flashcard_app/database/database.dart';
 import 'package:flashcard_app/media/media_picker.dart';
 import 'package:flashcard_app/screens/edit_deck_screen.dart';
 
-/// A real, valid 1x1 white PNG (1-bit grayscale) — Image.file actually
+/// A real, valid 1x1 white PNG (1-bit grayscale) - Image.file actually
 /// decodes the attached file (as a Chip avatar), so test fixtures need
 /// real image bytes, not arbitrary placeholder data. Chunk lengths below
 /// are self-consistent (IHDR data is exactly 13 bytes, IDAT data is
-/// exactly 10) — a hand-typed PNG with a mismatched chunk length fails to
+/// exactly 10) - a hand-typed PNG with a mismatched chunk length fails to
 /// decode with an opaque "invalid image data" error, not a length error.
 const _kMinimalPng = [
   0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, // signature
@@ -31,7 +31,7 @@ const _kMinimalPng = [
 /// Taps [tapTarget] and polls (with real delays, inside runAsync's real
 /// zone) until [condition] is true, rather than guessing a fixed delay for
 /// the real File.copy() the tap triggers. The tap itself must happen
-/// *inside* runAsync too — a Future's continuation runs in the zone active
+/// *inside* runAsync too - a Future's continuation runs in the zone active
 /// when it was created, so tapping outside runAsync leaves the resulting
 /// async chain bound to the outer fake-async zone, where it never resolves.
 Future<void> _tapAndWaitUntil(
@@ -53,11 +53,11 @@ Future<void> _tapAndWaitUntil(
 /// real Chip avatar's Image.file decode time to actually fail first.
 /// Windows can briefly lock a media file just after it's written (File.copy
 /// finishing, antivirus real-time scanning), and FileImage's decode failure
-/// is reported to FlutterError asynchronously over real dart:io I/O —
+/// is reported to FlutterError asynchronously over real dart:io I/O -
 /// pumpAndSettle only flushes fake-async frames/timers, so it can return
 /// before that report lands, letting a plain takeException() miss it. Not
 /// a sign the app logic is wrong (already verified separately via
-/// DB/file-existence checks) — just a real decoder racing a real file.
+/// DB/file-existence checks) - just a real decoder racing a real file.
 Future<void> _settleAndDrainExceptions(WidgetTester tester) async {
   await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 200)));
   await tester.pumpAndSettle();
@@ -300,7 +300,7 @@ void main() {
     await tester.ensureVisible(find.byIcon(Icons.delete_outline));
     await tester.pumpAndSettle();
 
-    // Tap delete, then cancel — the card should survive.
+    // Tap delete, then cancel - the card should survive.
     await tester.tap(find.byIcon(Icons.delete_outline));
     await tester.pumpAndSettle();
     expect(find.text('Delete card?'), findsOneWidget);
@@ -308,7 +308,7 @@ void main() {
     await tester.pumpAndSettle();
     expect((await db.select(db.cards).get()).length, 1);
 
-    // Tap delete again, then confirm — the card should be gone.
+    // Tap delete again, then confirm - the card should be gone.
     await tester.ensureVisible(find.byIcon(Icons.delete_outline));
     await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.delete_outline));
@@ -438,7 +438,7 @@ void main() {
     WidgetTester tester,
   ) async {
     // Real dart:io calls (temp dirs, file copies) don't resolve inside
-    // testWidgets' fake-async zone without runAsync — they hang forever,
+    // testWidgets' fake-async zone without runAsync - they hang forever,
     // not just slowly, if awaited directly.
     final tempDir = await tester.runAsync(() => Directory.systemTemp.createTemp('edit_deck_media_test_'));
     final imageFile = await tester.runAsync(() async {
@@ -459,7 +459,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // The tap triggers a real File.copy() inside EditDeckScreen. pumpAndSettle
-    // only tracks fake-async frames/timers — it can't see a plain real Future,
+    // only tracks fake-async frames/timers - it can't see a plain real Future,
     // so it "settles" before the copy finishes. Poll for the resulting
     // state change instead of guessing a fixed delay.
     await _tapAndWaitUntil(
@@ -483,7 +483,7 @@ void main() {
 
     final card = (await db.select(db.cards).get()).single;
     expect(card.frontImagePath != null, true);
-    // A copy, not the picker's own path — the source file must survive
+    // A copy, not the picker's own path - the source file must survive
     // independently of whatever the OS does with the picker's temp file.
     expect(card.frontImagePath, isNot(imageFile.path));
     expect(await tester.runAsync(() => File(card.frontImagePath!).exists()), true);
@@ -533,7 +533,7 @@ void main() {
     await tester.tap(find.byIcon(Icons.cancel).first);
     await tester.pumpAndSettle();
     // This test is about the remove button clearing the attachment state,
-    // not about image decoding — the Chip avatar's real (if trivial) PNG
+    // not about image decoding - the Chip avatar's real (if trivial) PNG
     // decode can race with removal, or with Windows briefly locking the
     // freshly-written file (antivirus scanning, etc.), and throw. That's an
     // artifact of testing a real decoder against a same-frame add-then-
@@ -578,7 +578,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Unlike the image Chip, the audio Chip's avatar is a plain Icon, not
-    // a real file decode — no Windows file-lock race to guard against here.
+    // a real file decode - no Windows file-lock race to guard against here.
     await _tapAndWaitUntil(
       tester,
       find.text('Add audio').first,

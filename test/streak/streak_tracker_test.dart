@@ -68,7 +68,7 @@ void main() {
       final tracker = StreakTracker();
       final streak = await tracker.recordStudySession(now: DateTime(2026, 7, 26));
       expect(streak, 1);
-      // Same fixed date as above — currentStreak() defaults to the real
+      // Same fixed date as above - currentStreak() defaults to the real
       // clock, and comparing a 2026-07-26 fixture against a much later real
       // "today" would incorrectly read the streak as stale.
       expect(await tracker.currentStreak(now: DateTime(2026, 7, 26)), 1);

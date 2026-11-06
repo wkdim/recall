@@ -12,7 +12,7 @@ void main() {
   // DeckListScreen reads the study streak from SharedPreferences; reset it
   // between tests so streak state can't leak across them. Onboarding is
   // marked seen so its first-launch sheet doesn't block these tests, which
-  // aren't testing onboarding — see onboarding_test.dart for that.
+  // aren't testing onboarding - see onboarding_test.dart for that.
   setUp(() => SharedPreferences.setMockInitialValues({'has_seen_onboarding': true}));
 
   testWidgets('DeckListScreen shows empty state and adds a deck', (
@@ -116,8 +116,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // No streak yet — nothing has been studied. Check the streak's exact
-    // "N day(s)" text rather than the bare substring "day" — the daily-goal
+    // No streak yet - nothing has been studied. Check the streak's exact
+    // "N day(s)" text rather than the bare substring "day" - the daily-goal
     // progress text ("N / 20 today's goal") also contains "day" and is
     // present regardless of streak state.
     expect(find.text('1 day'), findsNothing);
@@ -193,7 +193,7 @@ void main() {
   ) async {
     final db = AppDatabase.forTesting(NativeDatabase.memory());
     final deckId = await db.into(db.decks).insert(DecksCompanion.insert(name: 'Deck'));
-    // A mature card, not due for a long time — only reachable via the collection.
+    // A mature card, not due for a long time - only reachable via the collection.
     await db.into(db.cards).insert(
           CardsCompanion.insert(
             deckId: deckId,
